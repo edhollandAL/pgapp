@@ -32,7 +32,7 @@ connect(PoolName, Settings) ->
 -spec equery(Sql::epgsql:sql_query(),
              Params :: list(epgsql:bind_param())) -> epgsql:reply(epgsql:equery_row()).
 equery(Sql, Params) ->
-    equery(epgsql_pool, Sql, Params).
+    pgapp_worker:equery(Sql, Params).
 
 -spec equery(PoolName::atom(), Sql::epgsql:sql_query(),
              Params :: list(epgsql:bind_param())) -> epgsql:reply(epgsql:equery_row()).
@@ -42,7 +42,7 @@ equery(PoolName, Sql, Params) ->
 -spec squery(Sql::epgsql:sql_query()) -> epgsql:reply(epgsql:squery_row()) |
                                          [epgsql:reply(epgsql:squery_row())].
 squery(Sql) ->
-    squery(epgsql_pool, Sql).
+    pgapp_worker:squery(Sql).
 
 -spec squery(PoolName::atom(), Sql::epgsql:sql_query()) -> epgsql:reply(epgsql:squery_row()) |
                                                            [epgsql:reply(epgsql:squery_row())].
